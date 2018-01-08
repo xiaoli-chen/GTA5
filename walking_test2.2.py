@@ -7,7 +7,6 @@
 # 2.1. recognize the lane
 # --todo use color to filter lane: ~yellow, ~white 
       #(~means around)
-
 # 2.2. walking straing along the line
 # 2.3. walking turning along the line
 # --todo control mouse movement
@@ -110,12 +109,10 @@ def detect_edge(rgb_image):
     return processed_img, lines
 
 def find_main_lanes(img, lines, color=[0, 255, 255], thickness=3):
-
     # if this fails, go with some default line
     try:
         # finds the maximum y value for a lane marker 
         # (since we cannot assume the horizon will always be at the same point.)
-
         ys = []  
         for i in lines:
             for ii in i:
@@ -125,7 +122,6 @@ def find_main_lanes(img, lines, color=[0, 255, 255], thickness=3):
         max_y = 200
         new_lines = []
         line_dict = {}
-
         for idx,i in enumerate(lines):
             for xyxy in i:
                 # These four lines:
@@ -135,11 +131,9 @@ def find_main_lanes(img, lines, color=[0, 255, 255], thickness=3):
                 y_coords = (xyxy[1],xyxy[3])
                 A = vstack([x_coords,ones(len(x_coords))]).T
                 m, b = lstsq(A, y_coords)[0]
-
                 # Calculating our new, and improved, xs
                 x1 = (min_y-b) / m
                 x2 = (max_y-b) / m
-
                 line_dict[idx] = [m,b,[int(x1), min_y, int(x2), max_y]]
                 new_lines.append([int(x1), min_y, int(x2), max_y])
 
@@ -297,7 +291,7 @@ if __name__ == '__main__':
     # t_minus = prev
     # t_now = prev
     # t_plus = prev
-    # l = [400,0,400,0]
+    l = [400,0,400,0]
     while(True):
         # region=(x1,y1,x2,y2)
         if not paused:
