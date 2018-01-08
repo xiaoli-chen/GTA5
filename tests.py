@@ -46,8 +46,13 @@ def test_mouse_position():
 def test_mouse_move():
 	while True:
 		keys = key_check()		
-		mouse_right(15)
+		mouse_right(35)
 		time.sleep(0.5)
+		mouse_left(35)
+		time.sleep(0.5)
+		mouse_left(35)
+		time.sleep(0.5)
+		mouse_right(35)
 
 		if 'T' in keys:
 			print('Break!')

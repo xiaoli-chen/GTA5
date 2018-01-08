@@ -16,6 +16,7 @@ def find_main_lanes(img, lines, color=[0, 255, 255], thickness=3):
         #print(lines)
         min_y = min(ys)
         max_y = 200
+        #mid_y = 150
         new_lines = []
         line_dict = {}
 
@@ -34,6 +35,7 @@ def find_main_lanes(img, lines, color=[0, 255, 255], thickness=3):
                 # Calculating our new, and improved, xs
                 x1 = (min_y-b) / m
                 x2 = (max_y-b) / m
+                #mid_x = (mid_y-b)/m
                 #print('x1,x2=',x1,x2)
 
                 line_dict[idx] = [m,b,[int(x1), min_y, int(x2), max_y]]

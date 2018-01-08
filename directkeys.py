@@ -1,5 +1,7 @@
 import ctypes
 import time
+import win32api as wapi
+import win32con  
 
 SendInput = ctypes.windll.user32.SendInput
 
@@ -8,9 +10,21 @@ KEY_A = 0x1E
 KEY_S = 0x1F
 KEY_D = 0x20
 
+KEYEVENTF_EXTENDEDKEY = 0x0001
+KEYEVENTF_KEYUP = 0x0002
+KEYEVENTF_SCANCODE = 0x0008
+KEYEVENTF_UNICODE = 0x0004
 
+INPUT_MOUSE = 0
+INPUT_KEYBOARD = 1
+INPUT_HARDWARE = 2
 # C struct redefinitions 
 PUL = ctypes.POINTER(ctypes.c_ulong)
+
+LONG = ctypes.c_long
+DWORD = ctypes.c_ulong
+ULONG_PTR = ctypes.POINTER(DWORD)
+WORD = ctypes.c_ushort
 
 class KeyBdInput(ctypes.Structure):
     _fields_ = [("wVk", ctypes.c_ushort),
@@ -46,19 +60,33 @@ class Input(ctypes.Structure):
 def PressKey(hexKeyCode):
     extra = ctypes.c_ulong(0)
     ii_ = Input_I()
-    ii_.ki = KeyBdInput( 0, hexKeyCode, 0x0008, 0, ctypes.pointer(extra) )
+    ii_.ki = KeyBdInput( 0, hexKeyCode, KEYEVENTF_SCANCODE, 0, ctypes.pointer(extra) )
     x = Input( ctypes.c_ulong(1), ii_ )
     ctypes.windll.user32.SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
 def ReleaseKey(hexKeyCode):
     extra = ctypes.c_ulong(0)
     ii_ = Input_I()
-    ii_.ki = KeyBdInput( 0, hexKeyCode, 0x0008 | 0x0002, 0, ctypes.pointer(extra) )
+    ii_.ki = KeyBdInput( 0, hexKeyCode, KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP, 0, ctypes.pointer(extra) )
     x = Input( ctypes.c_ulong(1), ii_ )
     ctypes.windll.user32.SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
-def mouse_move(x,y):
-    ctypes.windll.user32.SetCursorPos(x, y)
+MOUSEEVENTF_ABSOLUTE = 0x8000
+MOUSEEVENTF_MOVE = 0x0001
+
+def SendInput(*inputs):
+    nInputs = len(inputs)
+    LPINPUT = Input * nInputs
+    pInputs = LPINPUT(*inputs)
+    cbSize = ctypes.c_int(ctypes.sizeof(Input))
+    return ctypes.windll.user32.SendInput(nInputs, pInputs, cbSize)
+
+def mouse_move(dx,dy):
+    ii_ = Input_I()
+    ii_.mi = MouseInput(dx, dy, 0, MOUSEEVENTF_MOVE, 0, None)
+    x = Input(INPUT_MOUSE, ii_)
+    SendInput(x)
+
 
 # directx scan codes http://www.gamespp.com/directx/directInputKeyboardScanCodes.html
 

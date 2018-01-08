@@ -14,7 +14,7 @@ Changes:
 TOP = 400
 GAME_WIDTH = 800
 GAME_HEIGHT = 600+25
-DELTA_TIME_CONTROL = 0.2
+DELTA_TIME_CONTROL = 0.4
 
 # game screen shot size
 WIDTH = 480

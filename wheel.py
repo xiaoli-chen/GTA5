@@ -75,9 +75,9 @@ def no_keys():
     ReleaseKey(KEY_D)
 
 def mouse_left(offset):
-    cur_pos = query_mouse_position()
-    mouse_move(cur_pos['x']-offset,cur_pos['y'])
+    #cur_pos = query_mouse_position()
+    mouse_move(-1*offset,0)
 
 def mouse_right(offset):
-    cur_pos = query_mouse_position()
-    mouse_move(cur_pos['x']+offset,cur_pos['y'])
+    #cur_pos = query_mouse_position()
+    mouse_move(offset,0)

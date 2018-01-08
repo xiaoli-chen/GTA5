@@ -38,53 +38,12 @@ KEY_S = 0x1F
 KEY_D = 0x20
 
 
-
-
 def roi(img, vertices):
     mask = np.zeros_like(img)
     cv2.fillPoly(mask, vertices, 255)
     masked = cv2.bitwise_and(img, mask)
     return masked
 
-
-
-def walking_along_straight_line(l):
-    if abs(l[2]-400)>400:
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_W)
-    elif abs(l[2]-400)>200:
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_W)
-    elif l[2]-400<-20:
-        PressKey(KEY_A)
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_A)
-        ReleaseKey(KEY_W)
-    elif l[2]-400>20:
-        PressKey(KEY_D)
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_D)
-        ReleaseKey(KEY_W)
-    else:
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_W)
-    # if abs(l[2]-400)<50:
-    #     PressKey(KEY_W)
-    #     print('straight')
-    #     time.sleep(0.3)
-    # elif (l[2]-400)<-50:
-    #     PressKey(KEY_D)
-    #     print('right')
-    #     time.sleep(0.3)
-    # elif (l[2]-400)>50:
-    #     PressKey(KEY_S)
-    #     print('left')
-    #     time.sleep(0.3)
 
 # directx scan codes http://www.gamespp.com/directx/directInputKeyboardScanCodes.html
 
@@ -112,7 +71,7 @@ if __name__ == '__main__':
     # t_minus = prev
     # t_now = prev
     # t_plus = prev
-    l = [400,0,400,0]
+    #l = [400,0,400,0]
     while(True):
         # region=(x1,y1,x2,y2)
         if not paused:
@@ -133,9 +92,10 @@ if __name__ == '__main__':
             pass
                 
         print('nearest point lane = ',l[2])
+        mouse_right(20)
 
-        walking_along_straight_line(l)
 
+        #walking_along_straight_line(l)
         #cv2.circle(processed_img,(l[2],l[3]),10,[255,0,0])
 
             #last_time = time.time()
