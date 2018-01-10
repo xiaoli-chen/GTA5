@@ -17,6 +17,7 @@
 # 3.1 need update: move 'grabdata and recognize lane' into one function grab_recog
 # 3.2 turn with higher frequency than walk
 # 3.3 show recognized lane and background, real-time
+# 3.4 store imgs in sequence, with timestamp
 import numpy as np
 from snapshot import grab_screen
 import cv2
