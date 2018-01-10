@@ -14,10 +14,10 @@ def walking_along_straight_line(l):
     y2 = l[3]
     x_mid = x2+(x1-x2)*(y2-50)/(y2-y1)
     delta_x = (x2-x_mid)
-    if delta_x<-20:
-        mouse_left(5)
-    elif delta_x>20:
-        mouse_right(5)
+    # if delta_x<-20:
+    #     mouse_left(5)
+    # elif delta_x>20:
+    #     mouse_right(5)
 
     if abs(l[2]-400)>400:
         PressKey(KEY_W)
@@ -44,6 +44,14 @@ def walking_along_straight_line(l):
         time.sleep(DELTA_TIME_CONTROL)
         ReleaseKey(KEY_W)
 
+def walking_turn_200(l_list):
+    x1_1 = l_list[0][0]
+    x2_1 = l_list[1][0]
+    x_top_mid = 1/2*(x1_1+x2_1)
+    if x_top_mid<WIDTH*(0.5-0.12):
+        mouse_left(5)
+    elif x_top_mid>WIDTH*(0.5+0.2):
+        mouse_right(5)
 
 class KeyBdInput(ctypes.Structure):
     _fields_ = [("wVk", ctypes.c_ushort),
