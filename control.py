@@ -14,35 +14,35 @@ def walking_along_straight_line(l):
     y2 = l[3]
     x_mid = x2+(x1-x2)*(y2-50)/(y2-y1)
     delta_x = (x2-x_mid)
-    if delta_x<0:
+    if delta_x<-20:
         mouse_left(5)
-    elif delta_x>0:
+    elif delta_x>20:
         mouse_right(5)
 
-    # if abs(l[2]-400)>400:
-    #     PressKey(KEY_W)
-    #     time.sleep(DELTA_TIME_CONTROL)
-    #     ReleaseKey(KEY_W)
-    # elif abs(l[2]-400)>200:
-    #     PressKey(KEY_W)
-    #     time.sleep(DELTA_TIME_CONTROL)
-    #     ReleaseKey(KEY_W)
-    # elif l[2]-400<-20:
-    #     PressKey(KEY_A)
-    #     PressKey(KEY_W)
-    #     time.sleep(DELTA_TIME_CONTROL)
-    #     ReleaseKey(KEY_A)
-    #     ReleaseKey(KEY_W)
-    # elif l[2]-400>20:
-    #     PressKey(KEY_D)
-    #     PressKey(KEY_W)
-    #     time.sleep(DELTA_TIME_CONTROL)
-    #     ReleaseKey(KEY_D)
-    #     ReleaseKey(KEY_W)
-    # else:
-    #     PressKey(KEY_W)
-    #     time.sleep(DELTA_TIME_CONTROL)
-    #     ReleaseKey(KEY_W)
+    if abs(l[2]-400)>400:
+        PressKey(KEY_W)
+        time.sleep(DELTA_TIME_CONTROL)
+        ReleaseKey(KEY_W)
+    elif abs(l[2]-400)>200:
+        PressKey(KEY_W)
+        time.sleep(DELTA_TIME_CONTROL)
+        ReleaseKey(KEY_W)
+    elif l[2]-400<-20:
+        PressKey(KEY_A)
+        PressKey(KEY_W)
+        time.sleep(DELTA_TIME_CONTROL)
+        ReleaseKey(KEY_A)
+        ReleaseKey(KEY_W)
+    elif l[2]-400>20:
+        PressKey(KEY_D)
+        PressKey(KEY_W)
+        time.sleep(DELTA_TIME_CONTROL)
+        ReleaseKey(KEY_D)
+        ReleaseKey(KEY_W)
+    else:
+        PressKey(KEY_W)
+        time.sleep(DELTA_TIME_CONTROL)
+        ReleaseKey(KEY_W)
 
 
 class KeyBdInput(ctypes.Structure):
