@@ -92,10 +92,9 @@ if __name__ == '__main__':
             pass
                 
         print('nearest point lane = ',l[2])
-        mouse_right(20)
+        #mouse_right(10)
 
-
-        #walking_along_straight_line(l)
+        walking_along_straight_line(l)
         #cv2.circle(processed_img,(l[2],l[3]),10,[255,0,0])
 
             #last_time = time.time()
