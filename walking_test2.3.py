@@ -14,7 +14,9 @@
 # it will turn if walk slow
 
 # 3.1 change work flow: move 'grabdata' into walkturn, walkstraight function'
-
+# 3.1 need update: move 'grabdata and recognize lane' into one function grab_recog
+# 3.2 turn with higher frequency than walk
+# 3.3 show recognized lane and background, real-time
 import numpy as np
 from snapshot import grab_screen
 import cv2
@@ -77,28 +79,10 @@ if __name__ == '__main__':
     #l = [400,0,400,0]
     while(True):
         # region=(x1,y1,x2,y2)
-        if not paused:
-            screen = grab_screen(region=(0,TOP,GAME_WIDTH,GAME_HEIGHT))
-            screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
-            processed_img = cv2.Canny(screen, threshold1=200, threshold2=300)
-            processed_img = cv2.GaussianBlur(processed_img, (3,3), 0 )  
-            lines = cv2.HoughLinesP(processed_img, 1, np.pi/180, 120, 20, 35)
-        try:
-            l1, l2 = find_main_lanes(processed_img,lines,3)
-            if abs(l1[2]-400)>abs(l2[2]-400):
-              l = l2
-            else:
-              l = l1
-            #cv2.circle(original_image,(l2[2],l2[3]),10,[0,255,0])
-        except Exception as e:
-            print('Error in find main lane',str(e))
-            pass
-                
-        print('nearest point lane = ',l[2])
-        #mouse_right(10)
 
-        walking_turn_200([l1,l2])
-        walking_along_straight_line(l)
+
+        walking_turn_200(paused = False)
+        walking_along_straight_line(paused = False)
         #cv2.circle(processed_img,(l[2],l[3]),10,[255,0,0])
 
             #last_time = time.time()
