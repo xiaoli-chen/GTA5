@@ -20,38 +20,32 @@ def walking_along_straight_line(l):
     #     mouse_right(5)
 
     if abs(l[2]-400)>400:
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_W)
+        straight()
     elif abs(l[2]-400)>200:
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_W)
+        straight()
     elif l[2]-400<-20:
-        PressKey(KEY_A)
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_A)
-        ReleaseKey(KEY_W)
+        forward_left()
     elif l[2]-400>20:
-        PressKey(KEY_D)
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_D)
-        ReleaseKey(KEY_W)
+        forward_right()
     else:
-        PressKey(KEY_W)
-        time.sleep(DELTA_TIME_CONTROL)
-        ReleaseKey(KEY_W)
+        straight()
 
 def walking_turn_200(l_list):
-    x1_1 = l_list[0][0]
-    x2_1 = l_list[1][0]
-    x_top_mid = 1/2*(x1_1+x2_1)
-    if x_top_mid<WIDTH*(0.5-0.12):
-        mouse_left(5)
-    elif x_top_mid>WIDTH*(0.5+0.2):
-        mouse_right(5)
+    xtop1_frombottom200 = l_list[0][0]
+    xtop2_frombottom200 = l_list[1][0]
+    xbott1_frombottom000 = l_list[0][2]
+    xbott2_frombottom000 = l_list[1][2]
+
+    xtop1_frombottom600 = xbott1_frombottom000+3*(xtop1_frombottom200-xbott1_frombottom000)
+    xtop2_frombottom600 = xbott2_frombottom000+3*(xtop2_frombottom200-xbott2_frombottom000)
+    
+    xmid_frombottom600 = 1/2*(xtop1_frombottom600+xtop2_frombottom600)
+    if xmid_frombottom600<WIDTH*(0.5-0.5):
+        mouse_left(10)
+    elif xmid_frombottom600>WIDTH*(0.5+0.5):
+        mouse_right(10)
+    else:
+        pass
 
 class KeyBdInput(ctypes.Structure):
     _fields_ = [("wVk", ctypes.c_ushort),
@@ -99,6 +93,7 @@ def ReleaseKey(hexKeyCode):
 
 def straight():
     PressKey(KEY_W)
+    time.sleep(DELTA_TIME_CONTROL)
     ReleaseKey(KEY_W)
     ReleaseKey(KEY_A)
     ReleaseKey(KEY_D)
@@ -106,13 +101,15 @@ def straight():
 
 def left():
     PressKey(KEY_A)
+    time.sleep(DELTA_TIME_CONTROL)
     ReleaseKey(KEY_A)
     ReleaseKey(KEY_S)
     ReleaseKey(KEY_D)
-    #ReleaseKey(KEY_S)
+    ReleaseKey(KEY_S)
 
 def right():
     PressKey(KEY_D)
+    time.sleep(DELTA_TIME_CONTROL)
     ReleaseKey(KEY_D)
     ReleaseKey(KEY_A)
     ReleaseKey(KEY_S)
@@ -120,6 +117,7 @@ def right():
 def forward_left():
     PressKey(KEY_W)
     PressKey(KEY_A)
+    time.sleep(DELTA_TIME_CONTROL)
     ReleaseKey(KEY_W)
     ReleaseKey(KEY_A)
     ReleaseKey(KEY_D)
@@ -129,6 +127,7 @@ def forward_left():
 def forward_right():
     PressKey(KEY_W)
     PressKey(KEY_D)
+    time.sleep(DELTA_TIME_CONTROL)
     ReleaseKey(KEY_W)
     ReleaseKey(KEY_D)
     ReleaseKey(KEY_A)

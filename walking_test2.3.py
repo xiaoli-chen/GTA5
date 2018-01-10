@@ -11,6 +11,9 @@
 # 2.2. walking straing along the line
 # 2.3. walking turning along the line
 # --todo control mouse movement
+# it will turn if walk slow
+
+# 3.1 change work flow: move 'grabdata' into walkturn, walkstraight function'
 
 import numpy as np
 from snapshot import grab_screen
@@ -95,6 +98,7 @@ if __name__ == '__main__':
         #mouse_right(10)
 
         walking_turn_200([l1,l2])
+        walking_along_straight_line(l)
         #cv2.circle(processed_img,(l[2],l[3]),10,[255,0,0])
 
             #last_time = time.time()
