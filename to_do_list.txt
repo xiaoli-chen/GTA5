@@ -1,0 +1,13 @@
+ideas:
+# possible road detector
+# angle adjust: consider project deformation
+
+
+must:
+# case 1: if there is yellow lane:
+    case: 1.1 if the direction is almost the same
+
+# solve the m = infinite problem
+# solve the m = 0 problem
+
+
