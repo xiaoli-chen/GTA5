@@ -9,7 +9,7 @@ Changes:
 
 
 """
-
+import numpy as np
 # game windows size
 TOP = 400
 GAME_WIDTH = 800
@@ -23,3 +23,6 @@ HEIGHT = 270
 # training configuration
 LR = 1e-3
 EPOCHS = 30
+
+# image recognition
+ANGLE_THRESHOLD = 45 # unit is degree

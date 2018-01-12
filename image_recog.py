@@ -1,6 +1,7 @@
 from numpy import ones,vstack
 from numpy.linalg import lstsq
 from statistics import mean
+from config import *
 
 def find_main_lanes(img, lines, color=[0, 255, 255], thickness=3):
 
@@ -109,3 +110,36 @@ def detect_edge(rgb_image):
     print(lines)
     #draw_lines(processed_img,lines)    
     return processed_img, lines
+
+
+
+
+# 找出黄线
+def find_yellow_lane_BGR(org_img):
+    """This function is to find the possible lines in yellow, and return them
+    in form: [[x1,y1,x2,y2],
+              [x1,y1,x2,y2],
+              [x1,y1,x2,y2],
+              ...
+              ]
+    """
+    res_yellow=extract_with_yellowBGR(org_img)
+    yellow_edge_img,yellow_edge_lines = detect_edge(res_yellow)
+    return yellow_edge_lines
+
+# 确定两条直线的相对距离（在y=y_max处的距离），以做参考
+def distance(l1,l2):
+    """ distance calculate the distance of two line at y=y_max, actually it is the distance between two points
+    actually it is not the perpenticular distance between two lines.
+    distance = x2 - x1:
+    # if x2 - x1 > 0: then line 2 is on the right side of line 1
+    # if x2 - x1 < 0: then line 2 is on the left side of line 1
+    """ 
+    m1 = l1[0]
+    m2 = l2[0]
+    b1 = l1[1]
+    b2 = l2[1]
+    max_y = HEIGHT
+    x1 = (max_y-b) / m1
+    x2 = (max_y-b) / m2 ## max_y这个地方要用height
+    return x2-x1
