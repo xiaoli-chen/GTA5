@@ -1330,16 +1330,20 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 65,
    "metadata": {
-    "collapsed": true,
     "run_control": {
      "frozen": false,
      "read_only": false
     }
    },
    "outputs": [],
-   "source": []
+   "source": [
+    "img, action = get_saved_data(270)\n",
+    "cv2.circle(img,(240,270),10,[0,255,255])\n",
+    "display_image_win('stable_point', img)\n",
+    "destroy_win()"
+   ]
   }
  ],
  "metadata": {

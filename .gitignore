@@ -13,6 +13,7 @@ bal/
 image/
 object_detection/
 log/
+old_data/
 
 # Distribution / packaging
 .Python
