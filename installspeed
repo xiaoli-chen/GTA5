@@ -1,0 +1,21 @@
+Script Hook V Installation
+1. Copy ScriptHookV.dll to the game's main folder, i.e. where GTA5.exe is located.
+
+2. In order to load asi plugins you need to have asi loader installed, you can download it separately or use the latest version that comes with this distrib (dinput8.dll). You must delete previous asi loader version (dsound.dll) if you have one installed.
+
+3. This distrib also includes a sample asi plugin - native trainer, if you need a trainer then copy NativeTrainer.asi too.
+
+
+Installation 
+Install ScriptHookV
+Copy the *.asi and the LeFixSpeedo folder into the Grand Theft Auto V main folder.
+Please read the ingame mod info.
+Set the settings to your preferences: 
+-Using the mod menu (Recommended, by default F10 or cheat "lefixspeedo"). 
+-Manually by editing the .ini files (for advanced users). 
+
+
+
+
+https://github.com/gerrodlop/deepdrive/tree/master/SQDT_ROOT
+https://github.com/SuriyaNitt/deepdrive

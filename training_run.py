@@ -3,7 +3,7 @@ import numpy as np
 from snapshot import grab_screen
 from getkeys import key_check, key_map, keys_to_output
 import sys
-from config import GAME_WIDTH, GAME_HEIGHT, WIDTH,HEIGHT,LR,EPOCHS
+from config import TOP,GAME_WIDTH, GAME_HEIGHT, WIDTH,HEIGHT,LR,EPOCHS
 
 
 def get_file_idx(path):

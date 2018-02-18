@@ -1860,9 +1860,9 @@
    ]
   },
   {
+
    "cell_type": "markdown",
    "metadata": {
-    "collapsed": true,
     "run_control": {
      "frozen": false,
      "read_only": false
@@ -1886,7 +1886,12 @@
     "collapsed": true
    },
    "outputs": [],
-   "source": []
+   "source": [
+    "img, action = get_saved_data(270)\n",
+    "cv2.circle(img,(240,270),10,[0,255,255])\n",
+    "display_image_win('stable_point', img)\n",
+    "destroy_win()"
+   ]
   }
  ],
  "metadata": {
